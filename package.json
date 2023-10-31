@@ -17,8 +17,24 @@
 		"commands": [{
             "command": "terraform-provider-docs-jumper-vscode-extension.helloWorld",
             "title": "Hello World"
-
-		}]
+		}],
+		"configuration": {
+			"title": "tfpdjumper",
+			"properties": {
+				"tfpdjumper.fqdn": {
+					"type": "string",
+					"description": "FQDN of provider documents",
+					"default": "registry.terraform.io"
+				},
+				"tfpdjumper.paths": {
+					"type": "object",
+					"description": "Paths of each provider documents",
+					"default": {
+						"aws": "providers/hashicorp/aws/latest/docs/resources"
+					}
+				}
+			}
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",

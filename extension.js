@@ -18,12 +18,16 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('terraform-provider-docs-jumper-vscode-extension.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
+		const config = vscode.workspace.getConfiguration('tfpdjumper');
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from terraform-provider-docs-jumper-vscode-extension!');
+		const selection = vscode.window.activeTextEditor.selection;
+		const range = new vscode.Range(selection.start, selection.end);
+		const selText = vscode.window.activeTextEditor.document.getText(range).replace("aws_", "");
+
+		vscode.env.openExternal(
+			vscode.Uri.parse(`https://${config.fqdn}/${config.paths["aws"]}/${selText}`)
+		);
 	});
-
 	context.subscriptions.push(disposable);
 }
 
