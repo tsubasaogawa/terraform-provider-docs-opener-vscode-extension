@@ -1,38 +1,64 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "terraform-provider-docs-jumper-vscode-extension" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('terraform-provider-docs-jumper-vscode-extension.helloWorld', function () {
-		const config = vscode.workspace.getConfiguration('tfpdjumper');
+	let disposable = vscode.commands.registerCommand('terraform-provider-docs-opener-vscode-extension.helloWorld', async function () {
+		const config = vscode.workspace.getConfiguration('tfpd_opener');
 
 		const selection = vscode.window.activeTextEditor.selection;
 		const range = new vscode.Range(selection.start, selection.end);
-		const selText = vscode.window.activeTextEditor.document.getText(range).replace("aws_", "");
+		let resource = vscode.window.activeTextEditor.document.getText(range);
+		console.log(`resource: ${resource}`);
+		if (!resource) {
+			resource = await promptResource(vscode.window);
+			console.log(`(prompt) resource: ${resource}`);
+		}
+
+		const provider = getProvider(resource);
+		console.log(`provider: ${provider}`);
+		if (!provider || provider in config.paths === false) {
+			console.log('Cannot obtain provider or URL path');
+			return;
+		}
+
+		// ex. aws_ssm_parameter -> ssm_parameter
+		// TODO: considering resource or data source
+		const urlSuffix = resource.replace(`${provider}_`, '');
 
 		vscode.env.openExternal(
-			vscode.Uri.parse(`https://${config.fqdn}/${config.paths["aws"]}/${selText}`)
+			vscode.Uri.parse(`https://${config.fqdn}/${config.paths[provider]}/${urlSuffix}`)
 		);
 	});
 	context.subscriptions.push(disposable);
 }
 
-// this method is called when your extension is deactivated
 function deactivate() {}
+
+async function promptResource(window) {
+	const input = await window.showInputBox({
+		prompt: 'Input resource name:',
+		validateInput: p => {
+			return /^[\w_]+$/.test(p) ? '' : 'alphabets and underscores are allowed'
+		}
+	});
+	if (!input) {
+		return '';
+	}
+	return input;
+}
+
+function getProvider(resource) {
+	if (!resource) {
+		return '';
+	}
+	const match = resource.match(/^(?<provider>[^_]+)/);
+	if (!match) {
+		return '';
+	}
+	return match.groups.provider;
+}
 
 module.exports = {
 	activate,

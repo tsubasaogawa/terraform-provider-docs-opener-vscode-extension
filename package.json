@@ -1,6 +1,6 @@
 {
-  "name": "terraform-provider-docs-jumper-vscode-extension",
-	"displayName": "terraform-provider-docs-jumper-vscode-extension",
+  "name": "terraform-provider-docs-opener-vscode-extension",
+	"displayName": "terraform-provider-docs-opener-vscode-extension",
 	"description": "It ONLY opens the terraform provider document of the resource.",
 	"version": "0.0.1",
 	"engines": {
@@ -10,27 +10,28 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:terraform-provider-docs-jumper-vscode-extension.helloWorld"
+        "onCommand:terraform-provider-docs-opener-vscode-extension.helloWorld"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [{
-            "command": "terraform-provider-docs-jumper-vscode-extension.helloWorld",
+            "command": "terraform-provider-docs-opener-vscode-extension.helloWorld",
             "title": "Hello World"
 		}],
 		"configuration": {
-			"title": "tfpdjumper",
+			"title": "tfpd_opener",
 			"properties": {
-				"tfpdjumper.fqdn": {
+				"tfpd_opener.fqdn": {
 					"type": "string",
 					"description": "FQDN of provider documents",
 					"default": "registry.terraform.io"
 				},
-				"tfpdjumper.paths": {
+				"tfpd_opener.paths": {
 					"type": "object",
 					"description": "Paths of each provider documents",
 					"default": {
-						"aws": "providers/hashicorp/aws/latest/docs/resources"
+						"aws": "providers/hashicorp/aws/latest/docs/resources",
+						"google": "providers/hashicorp/google/latest/docs/resources"
 					}
 				}
 			}
