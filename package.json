@@ -1,23 +1,30 @@
 {
-  "name": "terraform-provider-docs-opener-vscode-extension",
-	"displayName": "terraform-provider-docs-opener-vscode-extension",
+	"name": "terraform-provider-docs-opener",
+	"displayName": "Terraform Provider Docs Opener",
+	"publisher": "tsubasaogawa",
 	"description": "It ONLY opens the terraform provider document of the resource.",
 	"version": "0.0.1",
+	"keywords": [
+		"terraform",
+		"provider",
+		"document",
+		"quick",
+		"help"
+	],
 	"engines": {
 		"vscode": "^1.83.0"
 	},
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [
-        "onCommand:terraform-provider-docs-opener-vscode-extension.helloWorld"
-	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [{
-            "command": "terraform-provider-docs-opener-vscode-extension.helloWorld",
-            "title": "Hello World"
-		}],
+		"commands": [
+			{
+				"command": "terraform-provider-docs-opener.run",
+				"title": "Open Terraform Document"
+			}
+		],
 		"configuration": {
 			"title": "tfpd_opener",
 			"properties": {
@@ -43,15 +50,14 @@
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-        "@types/vscode": "^1.83.0",
-        "@types/glob": "^7.2.0",
-        "@types/mocha": "^9.1.1",
-        "@types/node": "16.x",
-        "eslint": "^8.16.0",
-        "glob": "^8.0.3",
-        "mocha": "^10.0.0",
-        "typescript": "^4.7.2",
-        "@vscode/test-electron": "^2.1.3"
-    }
-
+		"@types/vscode": "^1.83.0",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "16.x",
+		"eslint": "^8.16.0",
+		"glob": "^8.0.3",
+		"mocha": "^10.0.0",
+		"typescript": "^4.7.2",
+		"@vscode/test-electron": "^2.1.3"
+	}
 }
