@@ -17,6 +17,10 @@
 	"categories": [
 		"Other"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tsubasaogawa/terraform-provider-docs-opener-vscode-extension.git"
+	},
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
