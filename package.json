@@ -22,6 +22,9 @@
 		"url": "https://github.com/tsubasaogawa/terraform-provider-docs-opener-vscode-extension.git"
 	},
 	"main": "./extension.js",
+	"activationEvents": [
+		"onCommand:terraform-provider-docs-opener.run"
+	],
 	"contributes": {
 		"commands": [
 			{
