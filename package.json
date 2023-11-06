@@ -3,7 +3,7 @@
 	"displayName": "Terraform Provider Docs Opener",
 	"publisher": "tsubasaogawa",
 	"description": "It ONLY opens the terraform provider document of the resource.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"keywords": [
 		"terraform",
 		"provider",
@@ -21,6 +21,7 @@
 		"type": "git",
 		"url": "https://github.com/tsubasaogawa/terraform-provider-docs-opener-vscode-extension.git"
 	},
+	"icon": "./icon.jpg",
 	"main": "./extension.js",
 	"activationEvents": [
 		"onCommand:terraform-provider-docs-opener.run"
@@ -32,15 +33,22 @@
 				"title": "Open Terraform Document"
 			}
 		],
+		"keybindings": [
+			{
+				"command": "terraform-provider-docs-opener.run",
+				"key": "shift+alt+t",
+				"when": "editorHasSelection"
+			}
+		],
 		"configuration": {
-			"title": "tfpd_opener",
+			"title": "Terraform Provider Docs Opener",
 			"properties": {
-				"tfpd_opener.fqdn": {
+				"TFDocsOpener.fqdn": {
 					"type": "string",
 					"description": "FQDN of provider documents",
 					"default": "registry.terraform.io"
 				},
-				"tfpd_opener.paths": {
+				"TFDocsOpener.paths": {
 					"type": "object",
 					"description": "Paths of each provider documents",
 					"default": {
