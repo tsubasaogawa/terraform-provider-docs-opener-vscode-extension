@@ -19,7 +19,7 @@ You can change some parameters in your settings.json.
 
 ## Key Binding
 
-It can also run with `Ctrl + Shift + T`
+It can also run with `Alt + Shift + T`
 
 ## Future Works
 
