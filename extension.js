@@ -18,7 +18,7 @@ async function run() {
 	console.log(`resource: ${resource}`);
 
 	const provider = getProvider(resource);
-	const paths = vscode.workspace.getConfiguration('tfpd_opener').get('paths');
+	const paths = vscode.workspace.getConfiguration('TFDocsOpener').get('paths');
 	if (!provider || provider in paths === false) {
 		vscode.window.showWarningMessage(`Opener: Cannot obtain provider or URL path. provider=${provider}`);
 		return;
@@ -62,7 +62,7 @@ function getProvider(resource) {
 }
 
 function generateUrl(resource, provider) {
-	const config = vscode.workspace.getConfiguration('tfpd_opener');
+	const config = vscode.workspace.getConfiguration('TFDocsOpener');
 	if (!(provider in config.paths)) {
 		return '';
 	}
