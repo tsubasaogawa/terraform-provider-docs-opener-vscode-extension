@@ -2,7 +2,7 @@
 
 Yes. It is just an extension that opens the terraform document page in the browser that you're highlighting, that's all.
 
-![Demo](https://github.com/tsubasaogawa/terraform-provider-docs-opener-vscode-extension/assets/7788821/aa3fe8bb-6088-41ad-b1bc-ee9f2d0b5f28)
+![Demo](./doc/demo.gif)
 
 ## Settings
 
